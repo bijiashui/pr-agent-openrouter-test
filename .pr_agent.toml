@@ -1,0 +1,6 @@
+# PR-Agent 仓库级配置：覆盖默认模型为 OpenCode Zen Free
+[config]
+model = "openai/gpt-oss-120b:free"
+fallback_models = []
+[pr_reviewer]
+extra_instructions = "Reply in Chinese; mark severity (BLOCKER/MAJOR/MINOR/NIT). Be concise."
