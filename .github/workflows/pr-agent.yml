@@ -13,9 +13,8 @@ jobs:
     steps:
       - name: PR-Agent Review
         uses: qodo-ai/pr-agent@main
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENAI_API_BASE: https://openrouter.ai/api/v1
           OPENAI_API_MODEL: openai/gpt-oss-20b:free
