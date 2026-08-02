@@ -7,14 +7,19 @@ on:
 jobs:
   pr_agent_job:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: PR-Agent Review
         uses: qodo-ai/pr-agent@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENAI_API_BASE: https://openrouter.ai/api/v1
-          OPENAI_API_MODEL: deepseek/deepseek-chat-v3.1:free
+          OPENAI_API_MODEL: openai/gpt-oss-20b:free
           PR_AGENT_CONFIG.AI_TIMEOUT: 180
-          PR_AGENT_CONFIG.AI_MAX_OUTPUT_TOKENS: 800
-          PR_AGENT_CONFIG.REVIEW.EXTRA_INSTRUCTIONS: "Reply in Chinese; mark severity (BLOCKER/MAJOR/MINOR/NIT)."
+          PR_AGENT_CONFIG.MAX_DESCRIPTION_TOKENS: 200
+          PR_AGENT_CONFIG.MAX_COMMITS_TOKENS: 100
+          PR_AGENT_CONFIG.REVIEW.EXTRA_INSTRUCTIONS: "Reply in Chinese; mark severity (BLOCKER/MAJOR/MINOR/NIT). Be concise."
