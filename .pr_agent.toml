@@ -1,0 +1,5 @@
+[config]
+model = "deepseek-v4-flash-free"
+fallback_models = []
+[pr_reviewer]
+extra_instructions = "Reply in Chinese; mark severity (BLOCKER/MAJOR/MINOR/NIT). Be concise."
