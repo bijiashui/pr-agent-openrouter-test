@@ -1,0 +1,18 @@
+name: PR-Agent Review
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+jobs:
+  pr_agent_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: PR-Agent Review
+        uses: qodo-ai/pr-agent@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENAI_API_BASE: https://openrouter.ai/api/v1
+          OPENAI_API_MODEL: deepseek/deepseek-chat-v3.1:free
+          PR_AGENT_CONFIG.REVIEW.EXTRA_INSTRUCTIONS: "Reply in Chinese; mark all review feedback with severity (BLOCKER/MAJOR/MINOR/NIT)."
